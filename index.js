@@ -40,6 +40,20 @@ function writeFeedbackToFile(person, feedback) {
 const feedback = {};
 
 csv.parse(rawData, function(err, data){
+  /*
+
+  First slice on line 57 cuts off the header row; second slice cuts off these columns:
+  * "Entry Id"
+  * "Date Created"
+  * "Created By"
+  * "Last Updated"
+  * "Updated By"
+  * "IP Address"
+  * "Last Page Accessed"
+  * "Completion Status"
+
+  */
+
   data.slice(1).map(arr => arr.slice(1, 13))
   .forEach(arr => {
     const [ name, selfPos, selfCrit, tm1, tm1Pos, tm1Crit, tm2, tm2Pos, tm2Crit, tm3, tm3Pos, tm3Crit ] = arr;
